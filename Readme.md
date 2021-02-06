@@ -1,5 +1,5 @@
 # Tech Mahindra Task 1 - CRUD Form In Django Framework
-![Alt Text](https://media.giphy.com/media/vFKqnCdLPNOKc/giphy.gif)
+![Project](https://github.com/khuzema786/Django-CRUD/blob/master/CRUD.gif)
 
 ## To get started
 - Clone the repository
