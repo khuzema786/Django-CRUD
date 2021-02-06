@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+  border: 0;
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+/* width */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #27609d;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+a {
+  text-decoration: none;
+}
+
+  .contactflex {
+    display: grid;
+    grid-template-columns: 70% 30%;
+  }
+  .table {
+    overflow: scroll;
+    height: 100vh;
+  }
+  .contactform {
+    padding: 5vw;
+    width: 100%;
+    height: auto;
+    background: white;
+    display: block;    
+    overflow: scroll;
+    height: 100vh;
+    box-shadow: 0px 4px 14px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  form label {
+    margin-top: 1vw;
+  }
+
+  .radio {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 6.5vw;    
+  }
+
+  form input,
+  #select,
+  textarea {
+    padding: 1vw;
+    background: #f3f3f3;
+    border: 1px solid #d8d8d8;
+    border-radius: 0.5vw;
+  }
+
+  #select {      
+    outline-color: transparent;
+    margin-top: 0.5vw;
+  }
+
+  #select option {
+    font-size: 1vw;
+  }
+
+  .cont {
+    color: black;
+    font-weight: bolder;
+  }
+  
+  #submit {
+    background: #0d7cbb;
+    margin-top: 2vw;
+    width: 20vw;
+    border-radius: 1.5vw;
+    align-self: center;
+    color: white;
+  }

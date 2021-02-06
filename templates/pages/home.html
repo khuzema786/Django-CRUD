@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <!-- Responsive Design -->
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+
+  <!-- Page Info -->
+  <title>CRUD</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- Custom stylesheet -->
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+  <div class="contactflex">
+    <div class="table">
+      <table id="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First_Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Designation</th>
+            <th scope="col">Industry</th>
+            <th scope="col">Website</th>
+            <th scope="col">Description</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for form in forms %}
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{form.first_name}}</td>
+            <td>{{form.last_name}}</td>
+            <td>{{form.designation}}</td>
+            <td>{{form.industry}}</td>
+            <td>{{form.website}}</td>
+            <td>{{form.description}}</td>
+            <td><a href="{% url 'edit' form.id %}" class="btn btn-outline-dark">Edit</a></td>
+            <td><a href="{% url 'delete' form.id %}" class="btn btn-outline-danger">Delete</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="contactform">
+      <form action="{% url 'home' %}" method="POST">
+        {% include 'partials/_messages.html' %}
+        {% csrf_token %}
+        <p><b> Please fill the form </b></p>
+        <label class="label">First name:</label>
+        <input type="text" name="first_name" 
+        {% if form_detail.first_name %} 
+        value="{{ form_detail.first_name }}" 
+        {% endif %} required />
+        <label class="label">Last name:</label>
+        <input type="text" name="last_name" 
+        {% if form_detail.last_name %} 
+        value="{{ form_detail.last_name }}" 
+        {% endif %} required />
+        <p>You are a</p>
+        <div class="radio">
+          <input 
+          {% if form_detail.designation == "Individual" %} 
+          checked="checked"
+          {% endif %}
+          id="rad1" value="Individual" name="designation" type="radio" />
+          <label for="rad1">Individual</label>
+        </div>
+        <div class="radio">
+          <input id="rad2" 
+          {% if form_detail.designation == "Business" %} 
+          checked="checked"
+          {% endif %}
+          value="Buisness" name="designation" type="radio" />
+          <label for="rad2">Buisness</label>
+        </div>
+        <label>Please Choose the Industry that best defines the line of business</label>
+        <select 
+        {% if form_detail.industry %} 
+        value="{{ form_detail.industry }}" 
+        {% endif %} 
+        name="industry" id="select"
+        required>
+          <option value="Restaurents and Bars">Restaurents and Bars</option>
+          <option value="Event Ticketing and Management">Event Ticketing and Management</option>
+          <option value="Travel - Airline/Hotel/Cruise/Rentals">Travel - Airline/Hotel/Cruise/Rentals</option>
+          <option value="Commericial Real Estate/Building Management">Commericial Real Estate/Building Management
+          </option>
+          <option value="Movie Theaters">Movie Theaters</option>
+          <option value="Sports/Concerts/Event Venues">Sports/Concerts/Event Venues</option>
+          <option value="Schools and Colleges">Schools and Colleges</option>
+          <option value="Place of Worship">Place of Worship</option>
+          <option value="Government organizations">Government organizations</option>
+        </select>
+        <label class="label">Buisness Website(Optional)</label>
+        <input 
+        {% if form_detail.website %} 
+        value="{{ form_detail.website }}" 
+        {% endif %} 
+        type="text" name="website" />
+        <label>
+          Briefly describe what you are looking to achieve with Afyapass and your current problem
+          statement</label>
+        <textarea 
+         name="description"
+        required>
+          {% if form_detail.description %} 
+          {{ form_detail.description }}
+          {% endif %}
+        </textarea>
+        <input id="submit" type="submit" />
+      </form>
+    </div>
+  </div>
+</body>
+<script>
+  setTimeout(() => {
+    document.getElementById('message').style.display = "none";
+  }, 1500);    
+</script>
+
+</html>
